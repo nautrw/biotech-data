@@ -22,7 +22,3 @@ def quantify_observations(data):
 
 def get_full_mean(data):
     return float(data["Observation"].mean())
-
-
-# NOTE: Find out why quantify_observations changes it to an int before excluding spore colonies
-# NOTE: To get float values, exclude spore colonies and then quantify
