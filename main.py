@@ -2,6 +2,10 @@ import pandas as pd
 
 data = pd.read_csv("data.csv")
 
+def Start(data):
+    data = exclude_spore_colonies(data)
+    data = exclude_no_shop(data)
+    return data
 
 def exclude_spore_colonies(data):
     return data.set_index("Observation").drop("Spore Colonies").reset_index()
@@ -22,3 +26,6 @@ def quantify_observations(data):
 
 def get_full_mean(data):
     return float(data["Observation"].mean())
+
+def get_specific_shop(data, shopName):
+    return data.loc[data["General Location"] == shopName]
