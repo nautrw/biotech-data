@@ -8,12 +8,21 @@ def exclude_spore_colonies(data):
 
 
 def exclude_no_shop(data):
+    # `NaN` corresponds to `N/A` in the data
     return data.set_index("Academy").drop(float("nan")).reset_index()
 
 
 def quantify_observations(data):
-    values = {"None": 0, "Below Average": 1, "Average": 2, "Above Average": 3}
+    values = {"None": -2.0, "Below Average": -1.0, "Average": 0.0, "Above Average": 1.0}
 
     data["Observation"] = data["Observation"].replace(values)
 
     return data
+
+
+def get_full_mean(data):
+    return float(data["Observation"].mean())
+
+
+# NOTE: Find out why quantify_observations changes it to an int before excluding spore colonies
+# NOTE: To get float values, exclude spore colonies and then quantify
