@@ -8,13 +8,13 @@ shops = {
         "Advanced Manufacturing",
         "Auto Collision",
         "Auto Technology",
-        "Computer Aided Drafting",
+        # "Computer Aided Drafting", # No data on CAD
         "Robotics & Automation Technology",
         "Welding",
     ],
     "Allied Health and Human Services Academy": [
         "Allied Health",
-        "Biotechnology",
+        # "Biotechnology", # No data on Biotech
         "Environmental Tech",
         "Veterinary Assisting",
         "Cosmetology",
@@ -23,13 +23,13 @@ shops = {
     "Coughlin Construction Academy": [
         "Carpentry",
         "Electrical",
-        "HVAC/R",
+        "Hvac/R",
         "Painting & Design",
         "Plumbing",
     ],
     "IT and Business Services Academy": [
         "Culinary Arts",
-        "Finance, Marketin, & Business Management",
+        # "Finance, Marketing, & Business Management", # No data on finance
         "Hospitality Management",
         "Information Support Services & Networking",
         "Programming & Web Development",
