@@ -55,7 +55,9 @@ def exclude_no_shop(data):
 
 
 def quantify_observations(data):
-    values = {"None": -2.0, "Below Average": -1.0, "Average": 0.0, "Above Average": 1.0}
+    # values = {"None": -2.0, "Below Average": -1.0, "Average": 0.0, "Above Average": 1.0}
+
+    values = {"None": 0, "Below Average": 1, "Average": 2, "Above Average": 3.0}
 
     data["Observation"] = data["Observation"].replace(values)
 
@@ -78,8 +80,11 @@ def shops_mean_graph(data):
         shop_data = get_specific_shop(data, shop)
         values.append(float(shop_data["Observation"].mean()))
 
-    df = pd.DataFrame({"shop": shops_list, "mean": values})
-    ax = df.plot.barh("shop", "mean")
+    df = pd.DataFrame({"shops": shops_list, "mean": values})
+    ax = df.plot.barh("shops", "mean")
+    ax.set_xticklabels(
+        ["None", "", "Below Average", "", "Average", "", "Above Average"]
+    )
 
     plt.title("Mean rating for all shops")
     plt.ylabel("Shops")
