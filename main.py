@@ -69,8 +69,9 @@ def get_full_mean(data):
     return float(data["Observation"].mean())
 
 
-def get_specific_shop(data, shop_name):
-    return data.loc[data["General Location"] == shop_name]
+def get_specific_shops(data, shops_list):
+    # The `in` keyword will NOT work
+    return data.loc[data["General Location"].isin(shops_list)]
 
 
 def shops_mean_graph(data):
@@ -78,7 +79,7 @@ def shops_mean_graph(data):
 
     values = []
     for shop in shops_list:
-        shop_data = get_specific_shop(data, shop)
+        shop_data = get_specific_shops(data, [shop])
         values.append(float(shop_data["Observation"].mean()))
 
     df = pd.DataFrame({"shops": shops_list, "mean": values})
