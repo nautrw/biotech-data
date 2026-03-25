@@ -59,9 +59,10 @@ def quantify_observations(data):
 
     values = {"None": 0, "Below Average": 1, "Average": 2, "Above Average": 3.0}
 
-    data["Observation"] = data["Observation"].replace(values)
+    data_copy = data.copy()
+    data_copy["Observation"] = data_copy["Observation"].replace(values)
 
-    return data
+    return data_copy
 
 
 def get_full_mean(data):
