@@ -131,3 +131,21 @@ def shops_ratings_amounts_graph(data):
     plt.xlabel("Amounts")
     plt.tight_layout()
     plt.show()
+
+
+def academies_ratings_amounts_graph(data):
+    academies_list = shops.keys()
+
+    values = [
+        len(get_specific_shops(data, shops[academy])["Observation"])
+        for academy in academies_list
+    ]
+
+    df = pd.DataFrame({"academies": academies_list, "amount": values})
+    ax = df.plot.barh("academies", "amount")
+
+    plt.title("Amount of ratings for all academies")
+    plt.ylabel("Academies")
+    plt.xlabel("Amounts")
+    plt.tight_layout()
+    plt.show()
