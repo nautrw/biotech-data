@@ -93,3 +93,24 @@ def shops_mean_graph(data):
     plt.xlabel("Mean rating")
     plt.tight_layout()
     plt.show()
+
+
+def academies_mean_graph(data):
+    academies_list = shops.keys()
+
+    values = []
+    for academy in academies_list:
+        academy_data = get_specific_shops(data, shops[academy])
+        values.append(academy_data["Observation"].mean())
+
+    df = pd.DataFrame({"academies": academies_list, "mean": values})
+    ax = df.plot.barh("academies", "mean")
+    ax.set_xticklabels(
+        ["None", "", "Below Average", "", "Average", "", "Above Average"]
+    )
+
+    plt.title("Mean rating for all academies")
+    plt.ylabel("Academies")
+    plt.xlabel("Mean rating")
+    plt.tight_layout()
+    plt.show()
