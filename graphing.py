@@ -36,7 +36,8 @@ def academies_mean_graph(data):
         values.append(academy_data["Observation"].mean())
 
     df = pd.DataFrame({"academies": academies_list, "mean": values})
-    ax = df.plot.barh("academies", "mean")
+    fig, ax = plt.subplots()
+    df.plot.barh("academies", "mean", ax=ax)
     ax.set_xticklabels(
         ["None", "", "Below Average", "", "Average", "", "Above Average"]
     )
@@ -44,8 +45,8 @@ def academies_mean_graph(data):
     plt.title("Mean rating for all academies")
     plt.ylabel("Academies")
     plt.xlabel("Mean rating")
-    plt.tight_layout()
-    plt.show()
+
+    return fig
 
 
 def shops_ratings_amounts_graph(data):
@@ -56,13 +57,14 @@ def shops_ratings_amounts_graph(data):
     ]
 
     df = pd.DataFrame({"shops": shops_list, "amount": values})
-    ax = df.plot.barh("shops", "amount")
+    fig, ax = plt.subplots()
+    df.plot.barh("shops", "amount", ax=ax)
 
     plt.title("Amount of ratings for all shops")
     plt.ylabel("Shops")
     plt.xlabel("Amounts")
-    plt.tight_layout()
-    plt.show()
+
+    return fig
 
 
 def academies_ratings_amounts_graph(data):
@@ -74,10 +76,11 @@ def academies_ratings_amounts_graph(data):
     ]
 
     df = pd.DataFrame({"academies": academies_list, "amount": values})
-    ax = df.plot.barh("academies", "amount")
+    fig, ax = plt.subplots()
+    df.plot.barh("academies", "amount", ax=ax)
 
     plt.title("Amount of ratings for all academies")
     plt.ylabel("Academies")
     plt.xlabel("Amounts")
-    plt.tight_layout()
-    plt.show()
+
+    return fig
