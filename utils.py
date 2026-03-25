@@ -1,0 +1,69 @@
+shops = {
+    "Alden Academy": [
+        "Advanced Manufacturing",
+        "Auto Collision",
+        "Auto Technology",
+        # "Computer Aided Drafting", # No data on CAD
+        "Robotics & Automation Technology",
+        "Welding",
+    ],
+    "Allied Health and Human Services Academy": [
+        "Allied Health",
+        # "Biotechnology", # No data on Biotech
+        "Environmental Tech",
+        "Veterinary Assisting",
+        "Cosmetology",
+        "Early Childhood",
+    ],
+    "Coughlin Construction Academy": [
+        "Carpentry",
+        "Electrical",
+        "Hvac/R",
+        "Painting & Design",
+        "Plumbing",
+    ],
+    "IT and Business Services Academy": [
+        "Culinary Arts",
+        # "Finance, Marketing, & Business Management", # No data on finance
+        "Hospitality Management",
+        "Information Support Services & Networking",
+        "Programming & Web Development",
+        "Graphic Communication",
+    ],
+}
+
+
+def pregraph(data):
+    data = exclude_spore_colonies(data)
+    data = exclude_no_shop(data)
+    data = quantify_observations(data)
+    return data
+
+
+def exclude_spore_colonies(data):
+    return data.set_index("Observation").drop("Spore Colonies").reset_index()
+
+
+def exclude_no_shop(data):
+    # `NaN` corresponds to `N/A` in the data
+    return data.set_index("Academy").drop(float("nan")).reset_index()
+
+
+def quantify_observations(data):
+    # values = {"None": -2.0, "Below Average": -1.0, "Average": 0.0, "Above Average": 1.0}
+
+    values = {"None": 0, "Below Average": 1, "Average": 2, "Above Average": 3}
+
+    data_copy = data.copy()
+    data_copy["Observation"] = data_copy["Observation"].replace(values)
+
+    return data_copy
+
+
+def get_full_mean(data):
+    return float(data["Observation"].mean())
+
+
+def get_specific_shops(data, shops_list):
+    # The `in` keyword will NOT work
+    return data.loc[data["General Location"].isin(shops_list)]

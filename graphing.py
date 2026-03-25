@@ -1,0 +1,83 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+from utils import *
+
+
+def shops_mean_graph(data):
+    shops_list = sum(shops.values(), [])  # Turns the 2D array into 1D
+
+    values = []
+    for shop in shops_list:
+        shop_data = get_specific_shops(data, [shop])
+        values.append(shop_data["Observation"].mean())
+
+    df = pd.DataFrame({"shops": shops_list, "mean": values})
+    fig, ax = plt.subplots()
+    df.plot.barh("shops", "mean", ax=ax)
+
+    ax.set_xticklabels(
+        ["None", "", "Below Average", "", "Average", "", "Above Average"]
+    )
+
+    plt.title("Mean rating for all shops")
+    plt.ylabel("Shops")
+    plt.xlabel("Mean rating")
+
+    return fig
+
+
+def academies_mean_graph(data):
+    academies_list = shops.keys()
+
+    values = []
+    for academy in academies_list:
+        academy_data = get_specific_shops(data, shops[academy])
+        values.append(academy_data["Observation"].mean())
+
+    df = pd.DataFrame({"academies": academies_list, "mean": values})
+    ax = df.plot.barh("academies", "mean")
+    ax.set_xticklabels(
+        ["None", "", "Below Average", "", "Average", "", "Above Average"]
+    )
+
+    plt.title("Mean rating for all academies")
+    plt.ylabel("Academies")
+    plt.xlabel("Mean rating")
+    plt.tight_layout()
+    plt.show()
+
+
+def shops_ratings_amounts_graph(data):
+    shops_list = sum(shops.values(), [])
+
+    values = [
+        len(get_specific_shops(data, [shop])["Observation"]) for shop in shops_list
+    ]
+
+    df = pd.DataFrame({"shops": shops_list, "amount": values})
+    ax = df.plot.barh("shops", "amount")
+
+    plt.title("Amount of ratings for all shops")
+    plt.ylabel("Shops")
+    plt.xlabel("Amounts")
+    plt.tight_layout()
+    plt.show()
+
+
+def academies_ratings_amounts_graph(data):
+    academies_list = shops.keys()
+
+    values = [
+        len(get_specific_shops(data, shops[academy])["Observation"])
+        for academy in academies_list
+    ]
+
+    df = pd.DataFrame({"academies": academies_list, "amount": values})
+    ax = df.plot.barh("academies", "amount")
+
+    plt.title("Amount of ratings for all academies")
+    plt.ylabel("Academies")
+    plt.xlabel("Amounts")
+    plt.tight_layout()
+    plt.show()
