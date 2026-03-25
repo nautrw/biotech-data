@@ -38,7 +38,7 @@ shops = {
 }
 
 
-def Start(data):
+def pregraph(data):
     data = exclude_spore_colonies(data)
     data = exclude_no_shop(data)
     data = quantify_observations(data)
