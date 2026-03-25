@@ -114,3 +114,20 @@ def academies_mean_graph(data):
     plt.xlabel("Mean rating")
     plt.tight_layout()
     plt.show()
+
+
+def shops_ratings_amounts_graph(data):
+    shops_list = sum(shops.values(), [])
+
+    values = [
+        len(get_specific_shops(data, [shop])["Observation"]) for shop in shops_list
+    ]
+
+    df = pd.DataFrame({"shops": shops_list, "amount": values})
+    ax = df.plot.barh("shops", "amount")
+
+    plt.title("Amount of ratings for all shops")
+    plt.ylabel("Shops")
+    plt.xlabel("Amounts")
+    plt.tight_layout()
+    plt.show()
