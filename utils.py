@@ -60,10 +60,6 @@ def quantify_observations(data):
     return data_copy
 
 
-def get_full_mean(data):
-    return float(data["Observation"].mean())
-
-
 def get_specific_shops(data, shops_list):
     # The `in` keyword will NOT work
     return data.loc[data["General Location"].isin(shops_list)]
