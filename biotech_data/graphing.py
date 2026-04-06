@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import streamlit as st
 
 from biotech_data.utils import *
 
@@ -25,6 +26,19 @@ def shops_mean_graph(data):
     plt.xlabel("Mean rating")
 
     return fig
+
+
+def shops_mean_graph_test(data):
+    shops_list = sum(shops.values(), [])
+
+    values = []
+    for shop in shops_list:
+        shop_data = get_specific_shops(data, [shop])
+        values.append(shop_data["Observation"].mean())
+
+    df = pd.DataFrame({"shops": shops_list, "mean": values})
+
+    st.bar_chart(df, x="shops", y="mean", horizontal=True)
 
 
 def academies_mean_graph(data):
