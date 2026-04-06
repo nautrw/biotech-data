@@ -1,8 +1,8 @@
 import pandas as pd
 import streamlit as st
 
-import graphing as graphing
-from utils import pregraph
+import biotech_data.graphing as graphing
+from biotech_data.utils import pregraph
 
 data = pd.read_csv("data.csv")
 

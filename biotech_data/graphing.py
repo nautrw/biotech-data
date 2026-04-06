@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from utils import *
+from biotech_data.utils import *
 
 
 def shops_mean_graph(data):
