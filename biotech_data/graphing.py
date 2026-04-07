@@ -29,18 +29,13 @@ def academies_mean_graph(data):
         academy_data = get_specific_shops(data, shops[academy])
         values.append(academy_data["Observation"].mean())
 
-    df = pd.DataFrame({"academies": academies_list, "mean": values})
-    fig, ax = plt.subplots()
-    df.plot.barh("academies", "mean", ax=ax)
-    ax.set_xticklabels(
-        ["None", "", "Below Average", "", "Average", "", "Above Average"]
+    df = pd.DataFrame({"Academy": academies_list, "Average": values})
+
+    fig = px.bar(
+        df, x="Average", y="Academy", title="Mean ratings for academies", text_auto=True
     )
-
-    plt.title("Mean rating for all academies")
-    plt.ylabel("Academies")
-    plt.xlabel("Mean rating")
-
-    return fig
+    fig.update_layout(yaxis={"dtick": 1})
+    st.plotly_chart(fig)
 
 
 def shops_ratings_amounts_graph(data):
@@ -50,15 +45,11 @@ def shops_ratings_amounts_graph(data):
         len(get_specific_shops(data, [shop])["Observation"]) for shop in shops_list
     ]
 
-    df = pd.DataFrame({"shops": shops_list, "amount": values})
-    fig, ax = plt.subplots()
-    df.plot.barh("shops", "amount", ax=ax)
+    df = pd.DataFrame({"Shop": shops_list, "Average": values})
 
-    plt.title("Amount of ratings for all shops")
-    plt.ylabel("Shops")
-    plt.xlabel("Amounts")
-
-    return fig
+    fig = px.bar(df, x="Average", y="Shop", title="Amount of ratings per shop")
+    fig.update_layout(yaxis={"dtick": 1})
+    st.plotly_chart(fig)
 
 
 def academies_ratings_amounts_graph(data):
@@ -69,12 +60,14 @@ def academies_ratings_amounts_graph(data):
         for academy in academies_list
     ]
 
-    df = pd.DataFrame({"academies": academies_list, "amount": values})
-    fig, ax = plt.subplots()
-    df.plot.barh("academies", "amount", ax=ax)
+    df = pd.DataFrame({"Academy": academies_list, "Amount": values})
 
-    plt.title("Amount of ratings for all academies")
-    plt.ylabel("Academies")
-    plt.xlabel("Amounts")
-
-    return fig
+    fig = px.bar(
+        df,
+        x="Amount",
+        y="Academy",
+        title="Amount of ratings per academy",
+        text_auto=True,
+    )
+    fig.update_layout(yaxis={"dtick": 1})
+    st.plotly_chart(fig)
