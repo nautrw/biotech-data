@@ -21,6 +21,6 @@ st.subheader("Amount of ratings")
 shops_ratings_amounts, academies_ratings_amount = st.tabs(["Shops", "Academies"])
 
 with shops_ratings_amounts:
-    graphing.shops_ratings_amounts_graph(data)
+    graphing.shops_observations_amounts_graph(data)
 with academies_ratings_amount:
-    graphing.academies_ratings_amounts_graph(data)
+    graphing.academies_observations_amounts_graph(data)

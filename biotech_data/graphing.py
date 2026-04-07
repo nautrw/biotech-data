@@ -16,7 +16,7 @@ def shops_mean_graph(data):
 
     df = pd.DataFrame({"Shop": shops_list, "Average": values})
 
-    fig = px.bar(df, x="Average", y="Shop", title="Mean ratings for shops")
+    fig = px.bar(df, x="Average", y="Shop", title="Mean observations for shops")
     fig.update_layout(yaxis={"dtick": 1})
     st.plotly_chart(fig)
 
@@ -32,13 +32,17 @@ def academies_mean_graph(data):
     df = pd.DataFrame({"Academy": academies_list, "Average": values})
 
     fig = px.bar(
-        df, x="Average", y="Academy", title="Mean ratings for academies", text_auto=True
+        df,
+        x="Average",
+        y="Academy",
+        title="Mean observations for academies",
+        text_auto=True,
     )
     fig.update_layout(yaxis={"dtick": 1})
     st.plotly_chart(fig)
 
 
-def shops_ratings_amounts_graph(data):
+def shops_observations_amounts_graph(data):
     shops_list = sum(shops.values(), [])
 
     values = [
@@ -52,7 +56,7 @@ def shops_ratings_amounts_graph(data):
     st.plotly_chart(fig)
 
 
-def academies_ratings_amounts_graph(data):
+def academies_observations_amounts_graph(data):
     academies_list = shops.keys()
 
     values = [
@@ -66,7 +70,7 @@ def academies_ratings_amounts_graph(data):
         df,
         x="Amount",
         y="Academy",
-        title="Amount of ratings per academy",
+        title="Amount of observations per academy",
         text_auto=True,
     )
     fig.update_layout(yaxis={"dtick": 1})
