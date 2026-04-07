@@ -9,6 +9,8 @@ data = pregraph(data)
 
 st.header("Biotech Data Analysis")
 
+graphing.mean_observations_vs_obvervations_amounts_graph(data)
+
 st.subheader("Average ratings")
 shops_mean, academies_mean = st.tabs(["Shops", "Academies"])
 

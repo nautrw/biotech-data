@@ -49,9 +49,9 @@ def shops_observations_amounts_graph(data):
         len(get_specific_shops(data, [shop])["Observation"]) for shop in shops_list
     ]
 
-    df = pd.DataFrame({"Shop": shops_list, "Average": values})
+    df = pd.DataFrame({"Shop": shops_list, "Amount": values})
 
-    fig = px.bar(df, x="Average", y="Shop", title="Amount of ratings per shop")
+    fig = px.bar(df, x="Amount", y="Shop", title="Amount of observations per shop")
     fig.update_layout(yaxis={"dtick": 1})
     st.plotly_chart(fig)
 
@@ -74,4 +74,33 @@ def academies_observations_amounts_graph(data):
         text_auto=True,
     )
     fig.update_layout(yaxis={"dtick": 1})
+    st.plotly_chart(fig)
+
+
+def mean_observations_vs_obvervations_amounts_graph(data):
+    shops_list = sum(shops.values(), [])
+    academies_list = shops.keys()
+
+    mean_observations = [
+        get_specific_shops(data, [shop])["Observation"].mean() for shop in shops_list
+    ]
+    observations_amounts = [
+        len(get_specific_shops(data, [shop])["Observation"]) for shop in shops_list
+    ]
+
+    df = pd.DataFrame(
+        {
+            "Average Observation": mean_observations,
+            "Observations Amount": observations_amounts,
+            "Shop": shops_list,
+        }
+    )
+
+    fig = px.scatter(
+        df,
+        x="Average Observation",
+        y="Observations Amount",
+        hover_data=["Shop"],
+        title="Average Observation vs. Amount of Observations",
+    )
     st.plotly_chart(fig)
