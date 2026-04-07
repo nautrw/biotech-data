@@ -9,7 +9,18 @@ data = pregraph(data)
 
 st.header("Biotech Data Analysis")
 
-graphing.shops_mean_graph(data)
-graphing.shops_ratings_amounts_graph(data)
-graphing.academies_mean_graph(data)
-graphing.academies_ratings_amounts_graph(data)
+st.subheader("Average ratings")
+shops_mean, academies_mean = st.tabs(["Shops", "Academies"])
+
+with shops_mean:
+    graphing.shops_mean_graph(data)
+with academies_mean:
+    graphing.academies_mean_graph(data)
+
+st.subheader("Amount of ratings")
+shops_ratings_amounts, academies_ratings_amount = st.tabs(["Shops", "Academies"])
+
+with shops_ratings_amounts:
+    graphing.shops_ratings_amounts_graph(data)
+with academies_ratings_amount:
+    graphing.academies_ratings_amounts_graph(data)
