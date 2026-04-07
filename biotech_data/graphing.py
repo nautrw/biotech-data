@@ -1,34 +1,12 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import plotly.express as px
 import streamlit as st
 
-from biotech_data.utils import *
+from biotech_data.utils import get_specific_shops, shops
 
 
 def shops_mean_graph(data):
-    shops_list = sum(shops.values(), [])  # Turns the 2D array into 1D
-
-    values = []
-    for shop in shops_list:
-        shop_data = get_specific_shops(data, [shop])
-        values.append(shop_data["Observation"].mean())
-
-    df = pd.DataFrame({"shops": shops_list, "mean": values})
-    fig, ax = plt.subplots()
-    df.plot.barh("shops", "mean", ax=ax)
-
-    ax.set_xticklabels(
-        ["None", "", "Below Average", "", "Average", "", "Above Average"]
-    )
-
-    plt.title("Mean rating for all shops")
-    plt.ylabel("Shops")
-    plt.xlabel("Mean rating")
-
-    return fig
-
-
-def shops_mean_graph_test(data):
     shops_list = sum(shops.values(), [])
 
     values = []
@@ -36,9 +14,11 @@ def shops_mean_graph_test(data):
         shop_data = get_specific_shops(data, [shop])
         values.append(shop_data["Observation"].mean())
 
-    df = pd.DataFrame({"shops": shops_list, "mean": values})
+    df = pd.DataFrame({"Shop": shops_list, "Average": values})
 
-    st.bar_chart(df, x="shops", y="mean", horizontal=True)
+    fig = px.bar(df, x="Average", y="Shop", title="Mean ratings for shops")
+    fig.update_layout(yaxis={"dtick": 1})
+    st.plotly_chart(fig)
 
 
 def academies_mean_graph(data):
