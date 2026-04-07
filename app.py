@@ -2,10 +2,21 @@ import pandas as pd
 import streamlit as st
 
 import biotech_data.graphing as graphing
-from biotech_data.utils import pregraph
+import biotech_data.utils as utils
 
-data = pd.read_csv("data.csv")
-data = pregraph(data)
+
+@st.cache_data
+def load_data():
+    data = pd.read_csv("data.csv")
+
+    data = utils.exclude_spore_colonies(data)
+    data = utils.exclude_no_shop(data)
+    data = utils.quantify_observations(data)
+
+    return data
+
+
+data = load_data()
 
 st.header("Biotech Data Analysis")
 

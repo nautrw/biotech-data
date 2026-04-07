@@ -33,13 +33,6 @@ shops = {
 }
 
 
-def pregraph(data):
-    data = exclude_spore_colonies(data)
-    data = exclude_no_shop(data)
-    data = quantify_observations(data)
-    return data
-
-
 def exclude_spore_colonies(data):
     return data.set_index("Observation").drop("Spore Colonies").reset_index()
 
