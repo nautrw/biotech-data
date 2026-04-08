@@ -32,6 +32,18 @@ shops = {
     ],
 }
 
+no_shops = [
+    "Locker",
+    "Cafeteria",
+    "First Floor Elevator",
+    "Front Door",
+    "Railing",
+    "Stage",
+    "Lobby",
+    "Water Fountain",
+    "Gym",
+]
+
 
 def exclude_spore_colonies(data):
     return data.set_index("Observation").drop("Spore Colonies").reset_index()
@@ -53,6 +65,6 @@ def quantify_observations(data):
     return data_copy
 
 
-def get_specific_shops(data, shops_list):
+def get_specific_locations(data, shops_list):
     # The `in` keyword will NOT work
     return data.loc[data["General Location"].isin(shops_list)]
