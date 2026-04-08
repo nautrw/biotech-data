@@ -1,5 +1,4 @@
 [server]
 runOnSave = true
 allowRunOnSave = true
-fastReruns = true
 fileWatcherType = "auto"
