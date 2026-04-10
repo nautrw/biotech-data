@@ -1,6 +1,5 @@
 import textwrap
 
-import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.express as px
 import streamlit as st
