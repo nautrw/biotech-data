@@ -21,6 +21,11 @@ data = load_data()
 
 st.header("Biotech Data Analysis")
 
+cols = st.columns(2)
+
+cols[0].metric("Total observations", len(data["Observation"]))
+cols[1].metric("School-wide mean", f"{data['Observation'].mean():.2f}")
+
 graphing.mean_observations_vs_obvervations_amounts_scatter_plot(data)
 
 st.subheader("Average observation")
