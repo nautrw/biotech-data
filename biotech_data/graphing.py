@@ -149,7 +149,6 @@ def academies_observations_amounts_graph(data):
 
 def mean_observations_vs_obvervations_amounts_scatter_plot(data):
     shops_list = sum(shops.values(), [])
-    academies_list = shops.keys()
 
     mean_observations = [
         get_specific_locations(data, [shop])["Observation"].mean()
