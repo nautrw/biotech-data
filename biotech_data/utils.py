@@ -55,8 +55,6 @@ def exclude_no_shop(data):
 
 
 def quantify_observations(data):
-    # values = {"None": -2.0, "Below Average": -1.0, "Average": 0.0, "Above Average": 1.0}
-
     values = {"None": 0, "Below Average": 1, "Average": 2, "Above Average": 3}
 
     data_copy = data.copy()
