@@ -23,7 +23,7 @@ st.header("Biotech Data Analysis")
 
 graphing.mean_observations_vs_obvervations_amounts_scatter_plot(data)
 
-st.subheader("Average ratings")
+st.subheader("Average observation")
 shops_mean, academies_mean = st.tabs(["Shops", "Academies"])
 
 with shops_mean:
@@ -31,12 +31,14 @@ with shops_mean:
 with academies_mean:
     graphing.academies_mean_graph(data)
 
-st.subheader("Amount of ratings")
-shops_ratings_amounts, academies_ratings_amount = st.tabs(["Shops", "Academies"])
+st.subheader("Amount of observations")
+shops_observations_amounts, academies_observations_amount = st.tabs(
+    ["Shops", "Academies"]
+)
 
-with shops_ratings_amounts:
+with shops_observations_amounts:
     graphing.shops_observations_amounts_graph(data)
-with academies_ratings_amount:
+with academies_observations_amount:
     graphing.academies_observations_amounts_graph(data)
 
 st.subheader("Other locations")
