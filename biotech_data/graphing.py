@@ -8,22 +8,7 @@ import streamlit as st
 from biotech_data.utils import get_specific_locations, no_shops, shops
 
 
-def shops_mean_graph(data):
-    shops_list = sum(shops.values(), [])
-
-    values = []
-    for shop in shops_list:
-        shop_data = get_specific_locations(data, [shop])
-        values.append(shop_data["Observation"].mean())
-
-    df = pd.DataFrame({"Shop": shops_list, "Average": values})
-
-    fig = px.bar(df, x="Average", y="Shop", title="Mean observations for shops")
-    fig.update_layout(yaxis={"dtick": 1})
-    st.plotly_chart(fig)
-
-
-def shops_per_academy_mean_graph(data, academies):
+def shops_mean_graph(data, academies):
     shops_list = sum([shops[academy] for academy in academies], [])
 
     values = []
@@ -122,16 +107,21 @@ def academies_mean_graph(data):
     st.plotly_chart(fig)
 
 
-def shops_observations_amounts_graph(data):
-    shops_list = sum(shops.values(), [])
-
+def shops_observations_amounts_graph(data, academies):
+    shops_list = sum([shops[academy] for academy in academies], [])
     values = [
         len(get_specific_locations(data, [shop])["Observation"]) for shop in shops_list
     ]
 
     df = pd.DataFrame({"Shop": shops_list, "Amount": values})
 
-    fig = px.bar(df, x="Amount", y="Shop", title="Amount of observations per shop")
+    title = textwrap.fill(
+        f"Amount of observations for shops in {', '.join(academies)}",
+        90,
+        break_long_words=False,
+    ).replace("\n", "<br>")
+
+    fig = px.bar(df, x="Amount", y="Shop", title=title)
     fig.update_layout(yaxis={"dtick": 1})
     st.plotly_chart(fig)
 

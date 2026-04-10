@@ -27,7 +27,17 @@ st.subheader("Average observation")
 shops_mean, academies_mean = st.tabs(["Shops", "Academies"])
 
 with shops_mean:
-    graphing.shops_mean_graph(data)
+    academies = list(utils.shops.keys())
+
+    academies_select = st.multiselect(
+        "Academies' shops (Average observation)",
+        options=academies,
+        default=academies,
+        placeholder="Choose academies to get their shop's data",
+        accept_new_options=False,
+    )
+
+    graphing.shops_mean_graph(data, academies_select)
 with academies_mean:
     graphing.academies_mean_graph(data)
 
@@ -40,17 +50,14 @@ with shops_observations_amounts:
     academies = list(utils.shops.keys())
 
     academies_select = st.multiselect(
-        "Academies",
+        "Academies' shops (Amount of observations)",
         options=academies,
         default=academies,
-        placeholder="Choose an academy to get the shops",
+        placeholder="Choose academies to get their shop's data",
         accept_new_options=False,
     )
 
-    graphing.shops_per_academy_mean_graph(data, academies_select)
-with academies_observations_amount:
-    graphing.academies_observations_amounts_graph(data)
-
+    graphing.shops_observations_amounts_graph(data, academies_select)
 st.subheader("Other locations")
 (
     other_locations_mean,
