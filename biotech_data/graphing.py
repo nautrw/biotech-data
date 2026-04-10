@@ -71,7 +71,7 @@ def other_locations_scatter_plot(data):
     df = pd.DataFrame(
         {
             "Average Observation": mean_observations,
-            "Observations Amount": observations_amounts,
+            "Amount of Observations": observations_amounts,
             "Location": no_shops,
         }
     )
@@ -79,7 +79,7 @@ def other_locations_scatter_plot(data):
     fig = px.scatter(
         df,
         x="Average Observation",
-        y="Observations Amount",
+        y="Amount of Observations",
         hover_data=["Location"],
         title="Average Observation vs. Amount of Observations (Other Locations)",
     )
@@ -162,7 +162,7 @@ def mean_observations_vs_obvervations_amounts_scatter_plot(data):
     df = pd.DataFrame(
         {
             "Average Observation": mean_observations,
-            "Observations Amount": observations_amounts,
+            "Amount of Observations": observations_amounts,
             "Shop": shops_list,
         }
     )
@@ -170,7 +170,7 @@ def mean_observations_vs_obvervations_amounts_scatter_plot(data):
     fig = px.scatter(
         df,
         x="Average Observation",
-        y="Observations Amount",
+        y="Amount of Observations",
         hover_data=["Shop"],
         title="Average Observation vs. Amount of Observations (Shops)",
     )

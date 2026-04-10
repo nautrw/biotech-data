@@ -58,6 +58,9 @@ with shops_observations_amounts:
     )
 
     graphing.shops_observations_amounts_graph(data, academies_select)
+with academies_observations_amount:
+    graphing.academies_observations_amounts_graph(data)
+
 st.subheader("Other locations")
 (
     other_locations_mean,
