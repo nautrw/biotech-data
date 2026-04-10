@@ -3,6 +3,7 @@ import streamlit as st
 
 import biotech_data.graphing as graphing
 import biotech_data.utils as utils
+from biotech_data.easter_egg import do_easter_egg
 
 
 @st.cache_data
@@ -16,6 +17,7 @@ def load_data():
 
 
 data = load_data()
+do_easter_egg()
 
 st.header("Biotech Data Analysis")
 
