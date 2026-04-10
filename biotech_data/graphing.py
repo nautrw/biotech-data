@@ -1,3 +1,5 @@
+import textwrap
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.express as px
@@ -17,6 +19,27 @@ def shops_mean_graph(data):
     df = pd.DataFrame({"Shop": shops_list, "Average": values})
 
     fig = px.bar(df, x="Average", y="Shop", title="Mean observations for shops")
+    fig.update_layout(yaxis={"dtick": 1})
+    st.plotly_chart(fig)
+
+
+def shops_per_academy_mean_graph(data, academies):
+    shops_list = sum([shops[academy] for academy in academies], [])
+
+    values = []
+    for shop in shops_list:
+        shop_data = get_specific_locations(data, [shop])
+        values.append(shop_data["Observation"].mean())
+
+    df = pd.DataFrame({"Shop": shops_list, "Average": values})
+
+    title = textwrap.fill(
+        f"Mean observations for shops in {', '.join(academies)}",
+        90,
+        break_long_words=False,
+    ).replace("\n", "<br>")
+
+    fig = px.bar(df, x="Average", y="Shop", title=title)
     fig.update_layout(yaxis={"dtick": 1})
     st.plotly_chart(fig)
 

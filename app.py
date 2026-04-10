@@ -16,8 +16,8 @@ def load_data():
     return data
 
 
-data = load_data()
 do_easter_egg()
+data = load_data()
 
 st.header("Biotech Data Analysis")
 
@@ -37,7 +37,17 @@ shops_observations_amounts, academies_observations_amount = st.tabs(
 )
 
 with shops_observations_amounts:
-    graphing.shops_observations_amounts_graph(data)
+    academies = list(utils.shops.keys())
+
+    academies_select = st.multiselect(
+        "Academies",
+        options=academies,
+        default=academies,
+        placeholder="Choose an academy to get the shops",
+        accept_new_options=False,
+    )
+
+    graphing.shops_per_academy_mean_graph(data, academies_select)
 with academies_observations_amount:
     graphing.academies_observations_amounts_graph(data)
 
