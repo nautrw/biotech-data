@@ -28,14 +28,14 @@ cols[1].metric("School-wide mean", f"{data['Observation'].mean():.2f}")
 
 graphing.mean_observations_vs_obvervations_amounts_scatter_plot(data)
 
-st.subheader("Average observation")
+st.subheader("Mean observation")
 shops_mean, academies_mean = st.tabs(["Shops", "Academies"])
 
 with shops_mean:
     academies = list(utils.shops.keys())
 
     academies_select = st.multiselect(
-        "Academies' shops (Average observation)",
+        "Academies' shops (Mean observation)",
         options=academies,
         default=academies,
         placeholder="Choose academies to get their shop's data",
@@ -71,7 +71,7 @@ st.subheader("Other locations")
     other_locations_mean,
     other_locations_observations_amount,
     other_locations_scatter_plot,
-) = st.tabs(["Averages", "Observation Amounts", "Scatter plot"])
+) = st.tabs(["Means", "Observation Amounts", "Scatter plot"])
 
 with other_locations_mean:
     graphing.other_locations_mean_graph(data)

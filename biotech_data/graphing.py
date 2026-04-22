@@ -15,7 +15,7 @@ def shops_mean_graph(data, academies):
         shop_data = get_specific_locations(data, [shop])
         values.append(shop_data["Observation"].mean())
 
-    df = pd.DataFrame({"Shop": shops_list, "Average": values})
+    df = pd.DataFrame({"Shop": shops_list, "Mean": values})
 
     title = textwrap.fill(
         f"Mean observations for shops in {', '.join(academies)}",
@@ -23,7 +23,7 @@ def shops_mean_graph(data, academies):
         break_long_words=False,
     ).replace("\n", "<br>")
 
-    fig = px.bar(df, x="Average", y="Shop", title=title)
+    fig = px.bar(df, x="Mean", y="Shop", title=title)
     fig.update_layout(yaxis={"dtick": 1})
     st.plotly_chart(fig)
 
@@ -34,10 +34,10 @@ def other_locations_mean_graph(data):
         shop_data = get_specific_locations(data, [location])
         values.append(shop_data["Observation"].mean())
 
-    df = pd.DataFrame({"Location": no_shops, "Average": values})
+    df = pd.DataFrame({"Location": no_shops, "Mean": values})
 
     fig = px.bar(
-        df, x="Average", y="Location", title="Mean observations for other locations"
+        df, x="Mean", y="Location", title="Mean observations for other locations"
     )
     fig.update_layout(yaxis={"dtick": 1})
     st.plotly_chart(fig)
@@ -69,7 +69,7 @@ def other_locations_scatter_plot(data):
 
     df = pd.DataFrame(
         {
-            "Average Observation": mean_observations,
+            "Mean Observation": mean_observations,
             "Amount of Observations": observations_amounts,
             "Location": no_shops,
         }
@@ -77,10 +77,10 @@ def other_locations_scatter_plot(data):
 
     fig = px.scatter(
         df,
-        x="Average Observation",
+        x="Mean Observation",
         y="Amount of Observations",
         hover_data=["Location"],
-        title="Average Observation vs. Amount of Observations (Other Locations)",
+        title="Mean Observation vs. Amount of Observations (Other Locations)",
     )
     st.plotly_chart(fig)
 
@@ -93,11 +93,11 @@ def academies_mean_graph(data):
         academy_data = get_specific_locations(data, shops[academy])
         values.append(academy_data["Observation"].mean())
 
-    df = pd.DataFrame({"Academy": academies_list, "Average": values})
+    df = pd.DataFrame({"Academy": academies_list, "Mean": values})
 
     fig = px.bar(
         df,
-        x="Average",
+        x="Mean",
         y="Academy",
         title="Mean observations for academies",
         text_auto=True,
@@ -159,7 +159,7 @@ def mean_observations_vs_obvervations_amounts_scatter_plot(data):
 
     df = pd.DataFrame(
         {
-            "Average Observation": mean_observations,
+            "Mean Observation": mean_observations,
             "Amount of Observations": observations_amounts,
             "Shop": shops_list,
         }
@@ -167,9 +167,9 @@ def mean_observations_vs_obvervations_amounts_scatter_plot(data):
 
     fig = px.scatter(
         df,
-        x="Average Observation",
+        x="Mean Observation",
         y="Amount of Observations",
         hover_data=["Shop"],
-        title="Average Observation vs. Amount of Observations (Shops)",
+        title="Mean Observation vs. Amount of Observations (Shops)",
     )
     st.plotly_chart(fig)
