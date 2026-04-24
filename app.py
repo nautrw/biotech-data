@@ -21,10 +21,13 @@ data = load_data()
 
 st.header("Biotech Data Analysis")
 
-cols = st.columns(2)
+cols = st.columns(3)
 
 cols[0].metric("Total observations", len(data["Observation"]))
 cols[1].metric("School-wide mean", f"{data['Observation'].mean():.2f}")
+cols[2].metric(
+    "Shops' mean", f"{utils.exclude_no_shop(data)['Observation'].mean():.2f}"
+)
 
 graphing.mean_observations_vs_obvervations_amounts_scatter_plot(data)
 
