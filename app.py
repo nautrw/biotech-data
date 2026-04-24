@@ -21,14 +21,17 @@ data = load_data()
 
 st.header("Biotech Data Analysis")
 
-cols = st.columns(3)
+main_metrics = st.columns(4)
 
-cols[0].metric("Total observations", len(data["Observation"]))
-cols[1].metric("School-wide mean", f"{data['Observation'].mean():.2f}")
-cols[2].metric(
+main_metrics[0].metric("Total observations", len(data["Observation"]))
+main_metrics[1].metric("School-wide mean", f"{data['Observation'].mean():.2f}")
+main_metrics[2].metric(
     "Shops' mean", f"{utils.exclude_no_shop(data)['Observation'].mean():.2f}"
 )
-
+main_metrics[3].metric(
+    "Other locations' mean",
+    f"{utils.get_specific_locations(data, [location for location in utils.no_shops])["Observation"].mean():.2f}",
+)
 
 st.subheader("Shops")
 shops_mean_observation, shops_observations_amounts, shops_scatter = st.tabs(
