@@ -5,19 +5,12 @@ import biotech_data.graphing as graphing
 import biotech_data.utils as utils
 from biotech_data.easter_egg import do_easter_egg
 
-
-@st.cache_data
-def load_data():
-    data = pd.read_csv("data.csv")
-
-    data = utils.exclude_spore_colonies(data)
-    data = utils.quantify_observations(data)
-
-    return data
-
-
 do_easter_egg()
-data = load_data()
+
+data = pd.read_csv("data.csv")
+
+data = utils.exclude_spore_colonies(data)
+data = utils.quantify_observations(data)
 
 st.header("Biotech Data Analysis")
 
