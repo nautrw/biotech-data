@@ -29,52 +29,55 @@ cols[2].metric(
     "Shops' mean", f"{utils.exclude_no_shop(data)['Observation'].mean():.2f}"
 )
 
-graphing.mean_observations_vs_obvervations_amounts_scatter_plot(data)
 
-st.subheader("Mean observation")
-shops_mean, academies_mean = st.tabs(["Shops", "Academies"])
+st.subheader("Shops")
+shops_mean_observation, shops_observations_amounts, shops_scatter = st.tabs(
+    ["Mean observation", "Amount of observations", "Scatter Plot"]
+)
 
-with shops_mean:
+with shops_mean_observation:
     academies = list(utils.shops.keys())
 
     academies_select = st.multiselect(
-        "Academies' shops (Mean observation)",
+        "Search by academy",
+        key="academies_select_acadmies_mean_observation",
         options=academies,
-        default=academies,
+        default=academies,  # Will default to showing all
         placeholder="Choose academies to get their shop's data",
         accept_new_options=False,
     )
 
     graphing.shops_mean_graph(data, academies_select)
-with academies_mean:
-    graphing.academies_mean_graph(data)
-
-st.subheader("Amount of observations")
-shops_observations_amounts, academies_observations_amount = st.tabs(
-    ["Shops", "Academies"]
-)
-
 with shops_observations_amounts:
-    academies = list(utils.shops.keys())
-
     academies_select = st.multiselect(
-        "Academies' shops (Amount of observations)",
+        "Search by academy",
+        key="academies_select_academies_observation_amount",
         options=academies,
-        default=academies,
+        default=academies,  # Will default to showing all
         placeholder="Choose academies to get their shop's data",
         accept_new_options=False,
     )
 
     graphing.shops_observations_amounts_graph(data, academies_select)
+with shops_scatter:
+    graphing.mean_observations_vs_obvervations_amounts_scatter_plot(data)
+
+st.subheader("Academies")
+academies_mean_observation, academies_observations_amount = st.tabs(
+    ["Mean observation", "Amount of observations"]
+)
+
+with academies_mean_observation:
+    graphing.academies_mean_graph(data)
 with academies_observations_amount:
     graphing.academies_observations_amounts_graph(data)
 
-st.subheader("Other locations")
+st.subheader("Other Locations")
 (
     other_locations_mean,
     other_locations_observations_amount,
     other_locations_scatter_plot,
-) = st.tabs(["Means", "Observation Amounts", "Scatter plot"])
+) = st.tabs(["Mean observation", "Amount of observations", "Scatter plot"])
 
 with other_locations_mean:
     graphing.other_locations_mean_graph(data)
