@@ -16,7 +16,7 @@ st.header("Biotech Data Analysis")
 
 main_metrics = st.columns(4)
 
-main_metrics[0].metric("Total observations", len(data["Observation"]))
+main_metrics[0].metric("Total observations", len(raw_data["Observation"]))
 main_metrics[1].metric("School-wide mean", f"{data['Observation'].mean():.2f}")
 main_metrics[2].metric(
     "Shops' mean", f"{utils.exclude_no_shop(data)['Observation'].mean():.2f}"
