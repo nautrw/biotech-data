@@ -173,3 +173,49 @@ def mean_observations_vs_obvervations_amounts_scatter_plot(data):
         title="Mean Observation vs. Amount of Observations (Shops)",
     )
     st.plotly_chart(fig)
+
+
+def spore_colonies_graph(data):
+    spore_raw_data = data.loc[data["Observation"] == "Spore Colonies"]
+    shops_list = list(set(spore_raw_data["General Location"]))
+
+    spore_colonies_amount = [
+        len(get_specific_locations(spore_raw_data, [shop])["Observation"])
+        for shop in shops_list
+    ]
+
+    df = pd.DataFrame(
+        {"Shop": shops_list, "Amount of Spore Colonies": spore_colonies_amount}
+    )
+
+    fig = px.bar(
+        df,
+        x="Amount of Spore Colonies",
+        y="Shop",
+        title="Amount of spore colonies per shop",
+        text_auto=True,
+    )
+    fig.update_layout(yaxis={"dtick": 1})
+    st.plotly_chart(fig)
+
+
+def academies_spore_colonies_graph(data):
+    spore_raw_data = data.loc[data["Observation"] == "Spore Colonies"]
+    academies_list = shops.keys()
+
+    values = [
+        len(get_specific_locations(spore_raw_data, shops[academy])["Observation"])
+        for academy in academies_list
+    ]
+
+    df = pd.DataFrame({"Academy": academies_list, "Amount": values})
+
+    fig = px.bar(
+        df,
+        x="Amount",
+        y="Academy",
+        title="Amount of spore colonies per academy",
+        text_auto=True,
+    )
+    fig.update_layout(yaxis={"dtick": 1})
+    st.plotly_chart(fig)

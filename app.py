@@ -7,9 +7,9 @@ from biotech_data.easter_egg import do_easter_egg
 
 do_easter_egg()
 
-data = pd.read_csv("data.csv")
+raw_data = pd.read_csv("data.csv")
 
-data = utils.exclude_spore_colonies(data)
+data = utils.exclude_spore_colonies(raw_data)
 data = utils.quantify_observations(data)
 
 st.header("Biotech Data Analysis")
@@ -81,3 +81,11 @@ with other_locations_observations_amount:
     graphing.other_locations_observations_amounts_graph(data)
 with other_locations_scatter_plot:
     graphing.other_locations_scatter_plot(data)
+
+st.subheader("Spore Colonies")
+shops_spore_colonies, academies_spore_colonies = st.tabs(["Shops", "Academies"])
+
+with shops_spore_colonies:
+    graphing.spore_colonies_graph(raw_data)
+with academies_spore_colonies:
+    graphing.academies_spore_colonies_graph(raw_data)
