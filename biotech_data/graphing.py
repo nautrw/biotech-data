@@ -99,7 +99,7 @@ def academies_mean_graph(data):
         df,
         x="Mean",
         y="Academy",
-        title="Mean observations for academies",
+        title="Mean observations per academy",
         text_auto=True,
     )
     fig.update_layout(yaxis={"dtick": 1})
