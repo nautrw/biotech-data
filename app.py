@@ -50,10 +50,14 @@ main_metrics[2].metric(
 )
 main_metrics[3].metric(
     "Other locations' mean",
-    f"{utils.get_specific_locations(data, [location for location in utils.no_shops])["Observation"].mean():.2f}",
+    f"{utils.get_specific_locations(data,
+        [location for location in utils.no_shops]
+    )["Observation"].mean():.2f}",
 )
 
-st.subheader("Shops")
+st.subheader("Bacteria Observations", divider=True)
+
+st.markdown("### Shops")
 shops_mean_observation, shops_observations_amounts, shops_scatter = st.tabs(
     ["Mean observation", "Amount of observations", "Scatter Plot"]
 )
@@ -85,7 +89,8 @@ with shops_observations_amounts:
 with shops_scatter:
     graphing.mean_observations_vs_obvervations_amounts_scatter_plot(data)
 
-st.subheader("Academies")
+st.markdown("### Academies")
+
 academies_mean_observation, academies_observations_amount = st.tabs(
     ["Mean observation", "Amount of observations"]
 )
@@ -95,7 +100,8 @@ with academies_mean_observation:
 with academies_observations_amount:
     graphing.academies_observations_amounts_graph(data)
 
-st.subheader("Other Locations")
+st.markdown("### Other Locations")
+
 (
     other_locations_mean,
     other_locations_observations_amount,
@@ -109,7 +115,8 @@ with other_locations_observations_amount:
 with other_locations_scatter_plot:
     graphing.other_locations_scatter_plot(data)
 
-st.subheader("Spore Colonies")
+st.subheader("Spore Colonies", divider=True)
+
 shops_spore_colonies, academies_spore_colonies = st.tabs(["Shops", "Academies"])
 
 with shops_spore_colonies:
