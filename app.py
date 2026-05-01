@@ -12,7 +12,34 @@ raw_data = pd.read_csv("data.csv")
 data = utils.exclude_spore_colonies(raw_data)
 data = utils.quantify_observations(data)
 
-st.header("Biotech Data Analysis")
+st.header("Biotech Data Analysis", divider=True)
+
+st.subheader("Introduction", divider=True)
+
+st.markdown("""This project was made to showcase and analyze the data collecte
+by freshmen in the Biotechnology shop 1-week explore.
+
+Because the data was not quantitative, I decided to represent the observations
+as numbers, which is a more temporary solution but allows for performing
+operations like finding the mean:
+
+| Observation in Raw Data | Corresponding Value |
+| ----------------------- | ------------------- |
+| None | 0 |
+| Below Average | 1 |
+| Average | 2 |
+| Above Average | 3 |
+
+Thus, a mean between 2 and 3 for a location would indicate that the amount of
+bacteria found in that location is between average and above average.
+
+All graphs are fully interactive, and you are able to zoom in by selecting an
+area with the mouse, or hover over any bar or point to see the specific value.
+Furthermore, you can filter the shops shown in the [shops](#Shops) graphs by
+their academy using the select menus.
+""")
+
+st.subheader("Important Metrics", divider=True)
 
 main_metrics = st.columns(4)
 
