@@ -16,7 +16,7 @@ st.header("Biotech Data Analysis", divider=True)
 
 st.subheader("Introduction", divider=True)
 
-st.markdown("""This project was made to showcase and analyze the data collecte
+st.markdown("""This project was made to showcase and analyze the data collected
 by freshmen in the Biotechnology shop 1-week explore.
 
 Because the data was not quantitative, I decided to represent the observations
