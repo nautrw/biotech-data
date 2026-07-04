@@ -14,6 +14,14 @@ data = utils.quantify_observations(data)
 
 st.header("Biotech Data Analysis", divider=True)
 
+st.warning("""The data shown in this project was collected by high school
+freshmen, and this was their first time collecting data. These observations
+were not collected under rigorous scientific research conditions.
+
+Furthermore, some locations are bound to be "dirtier" than others due to the
+nature of the work done in them, and not all locations
+received the same amount of observations by students.""", title="Disclaimer")
+
 st.subheader("Introduction", divider=True)
 
 st.markdown("""This project was made to showcase and analyze the data collected
