@@ -20,7 +20,8 @@ were not collected under rigorous scientific research conditions.
 
 Furthermore, some locations are bound to be "dirtier" than others due to the
 nature of the work done in them, and not all locations
-received the same amount of observations by students.""", title="Disclaimer")
+received the same amount of observations by students.""", title="Disclaimer",
+icon="⚠️")
 
 st.subheader("Introduction", divider=True)
 
